@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.abyss.strartup-manager": {
-      "version": "file:C:/Users/antal/Development/Abyss/Packages/com.abyss.startup-manager",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,

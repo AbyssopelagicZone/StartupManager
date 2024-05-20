@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.abyss.strartup-manager": "file:C:/Users/antal/Development/Abyss/Packages/com.abyss.startup-manager",
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
     "com.unity.collab-proxy": "1.3.9",
     "com.unity.ide.rider": "2.0.7",

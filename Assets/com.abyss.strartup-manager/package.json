@@ -1,0 +1,23 @@
+{
+  "name": "com.abyss.strartup-manager",
+  "version": "1.0.0",
+  "displayName": "Startup Manager",
+  "description": "Infrastructure for application initialization.",
+  "unity": "2020.2",
+  "dependencies": {
+  },
+  "keywords": [
+    "Startup manager",
+    "Initialization",
+    "Entry point",
+    "Bootstrap"
+  ],
+  "contributors": [
+    "Aleksei Antipin"
+  ],
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  }
+}

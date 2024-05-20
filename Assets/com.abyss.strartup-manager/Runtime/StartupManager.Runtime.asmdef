@@ -1,0 +1,22 @@
+{
+    "name": "StartupManager.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.cysharp.unitask",
+            "expression": "",
+            "define": "STARTUP_MANAGER_UNITASK_SUPPORT"
+        }
+    ],
+    "noEngineReferences": false
+}
