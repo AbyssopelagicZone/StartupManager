@@ -15,9 +15,16 @@
   "contributors": [
     "Aleksei Antipin"
   ],
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  }
+  "samples": [
+    {
+      "displayName": "Custom Loading Screen Sample",
+      "description": "This example demonstrates how to override loading screen.", 
+      "path": "Samples~/CustomLoadingScreen"
+    },
+    {
+      "displayName": "UniTask Sample",
+      "description": "This example demonstrates how to use startup manager with UniTasks.", 
+      "path": "Samples~/UniTaskSample"
+    }
+  ]
 }

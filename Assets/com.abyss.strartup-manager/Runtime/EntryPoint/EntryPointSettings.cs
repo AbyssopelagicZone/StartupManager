@@ -11,6 +11,8 @@ namespace Abyss.StartupManager
 
 		public LoadingScreenMode LoadingScreenMode = LoadingScreenMode.BeforeResolveObjectGraph;
 
+		public int Priority;
+
 		public GameObject[] DontDestroyOnLoadObjects;
 		#endregion
 	}

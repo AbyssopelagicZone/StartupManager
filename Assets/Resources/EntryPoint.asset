@@ -15,5 +15,6 @@ MonoBehaviour:
   settings:
     PrintInitializationReport: 1
     LoadingScreenMode: 0
+    Priority: 0
     DontDestroyOnLoadObjects: []
   _isEnabled: 1

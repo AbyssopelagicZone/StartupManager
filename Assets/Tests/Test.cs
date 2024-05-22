@@ -12,6 +12,9 @@ public class Test
 		var go = new GameObject("Application Entry");
 
 		var testEntryOk = go.AddComponent<TestEntryOk>();
+
+		testEntryOk.Settings.Priority = 100;
+
 		var progress = new Progress();
 
 		EntryPointRunner.Run(testEntryOk);
@@ -33,6 +36,9 @@ public class Test
 		var go = new GameObject("Application Entry");
 
 		var testEntryOk = go.AddComponent<UniTaskSupportTests.TestEntryOk>();
+
+		testEntryOk.Settings.Priority = 100;
+
 		var progress = new Progress();
 
 		EntryPointRunner.Run(testEntryOk);

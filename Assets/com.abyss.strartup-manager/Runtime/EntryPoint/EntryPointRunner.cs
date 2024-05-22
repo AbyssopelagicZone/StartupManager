@@ -56,6 +56,9 @@ namespace Abyss.StartupManager
 
 			yield return ExecuteWithSample(CloseLoadingScreen, "Close Loading Screen");
 
+			yield return ExecuteWithSample(InstantiateDontDestroyOnLoadObjects,
+										   "Instantiate Dont Destroy On Load Objects");
+
 			CompleteInitialization();
 
 			yield return null;
@@ -67,6 +70,17 @@ namespace Abyss.StartupManager
 
 			if (_entryPoint.Settings.PrintInitializationReport)
 				PrintReport();
+		}
+
+		private void InstantiateDontDestroyOnLoadObjects()
+		{
+			if (_entryPoint.Settings.DontDestroyOnLoadObjects == null) return;
+
+			foreach (var dontDestroyOnLoadObject in _entryPoint.Settings.DontDestroyOnLoadObjects)
+			{
+				var clone = Object.Instantiate(dontDestroyOnLoadObject);
+				Object.DontDestroyOnLoad(clone);
+			}
 		}
 
 		private IEnumerator Initialize()
