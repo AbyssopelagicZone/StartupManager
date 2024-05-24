@@ -23,7 +23,9 @@ to ensure consistent and ordered initialization of your systems in Unity project
 ## Entry Point Priority
 
 ![](Documetation/Images/priority.png)
-
+`EntryPointMonoBehaviour` and `EntryPointScriptableObject` have a priority property that determines which entry point to use.
+If you have multiple entry points in the scene and in the resources folder, the entry point with the highest priority will be used.
+This way you can start up some scenes with different initialization logic. This is useful in development ant testing ideas.
 
 ## Examples
 
