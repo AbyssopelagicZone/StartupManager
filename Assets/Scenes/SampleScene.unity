@@ -339,6 +339,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1697923687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c70019434530431982a1f7ab3c3a3eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 729aaaa783496ba4a924042bc4a5a030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settings:
+    PrintInitializationReport: 1
+    LoadingScreenMode: 0
+    Priority: 100
+    DontDestroyOnLoadObjects: []
