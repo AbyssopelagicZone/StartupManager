@@ -1,0 +1,1 @@
+﻿wkhtmltopdf.exe --enable-local-file-access index.html ../Assets/StartupManager/Documentation.pdf

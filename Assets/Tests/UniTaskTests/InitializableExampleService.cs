@@ -3,9 +3,22 @@
 using System;
 using Abyss.StartupManager;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace UniTaskSupportTests
 {
+	
+	public class InitializableService : IInitializable
+	{
+		#region Interface Implementations
+		public void Initialize()
+		{
+			
+			Debug.Log("Initializing...");
+		}
+		#endregion
+	}
+	
 	public class InitializableWithException : IUniTaskInitializable
 	{
 		#region Interface Implementations

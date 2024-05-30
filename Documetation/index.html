@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Startup Documentation</title>
+    <style>
+        li {
+            margin: 10px 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .toc a {
+            text-decoration: none;
+            color: #3498db;
+            display: block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>App Startup Documentation</h1>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <a href="#overview">Overview</a>
+        <a href="#features">Features</a>
+        <a href="#get-started">Get Started</a>
+        <a href="#entry-point-priority">Entry Point Priority</a>
+        <a href="#examples">Examples</a>
+    </div>
+
+    <h2 id="overview">Overview</h2>
+    <p>
+        Startup Manager provides a simple and structured way to manage the application initialization process in Unity.
+        It introduces interfaces such as <code>IInitializable</code> and <code>ICoroutineInitializable</code>
+        to ensure consistent and ordered initialization of your systems in Unity projects.
+    </p>
+
+    <h2 id="features">Features</h2>
+    <ul>
+        <li><strong>Asynchronous initialization</strong>: Initialize systems asynchronously using coroutines or
+            UniTasks.
+        </li>
+        <li><strong>Initialization order</strong>: Define the order of initialization for systems.</li>
+        <li><strong>Loading screen</strong>: Show a loading screen while initializing systems.</li>
+        <li><strong>Accumulated Initialization Progress</strong>: Track and display the overall initialization progress
+            to provide feedback to users.
+        </li>
+        <li><strong>Create DontDestroyOnLoad objects</strong>: Instantiate all objects that should not be destroyed on
+            scene load in one place.
+        </li>
+    </ul>
+
+    <h2 id="get-started">Get Started</h2>
+    <h3>Basic Usage</h3>
+    <ol>
+        <li >Create a class that inherits from <code>EntryPointMonoBehaviour</code> or
+            <code>EntryPointScriptableObject</code>. <br> <img src="images/entry-points.png" alt="Create Entry Points">
+        </li>
+        <li>Write initialization logic.<br> <img src="images/initialization-logic.png" alt="Initialization Logic"></li>
+        <li>In case of <code>EntryPointMonoBehaviour</code>, attach the script to a GameObject in the scene. <br> <img
+                src="images/go-entry-point.png" alt="GameObject Entry Point"></li>
+        <li>In case of <code>EntryPointScriptableObject</code>, create scriptable object asset in Resources folder with
+            name EntryPoint. <br> <img src="images/so-entry-point.png" alt="Scriptable Object Entry Point">
+        </li>
+        <li>Run the scene.</li>
+    </ol>
+
+    <h2 id="entry-point-priority">Entry Point Priority</h2>
+    <p>
+        <code>EntryPointMonoBehaviour</code> and <code>EntryPointScriptableObject</code> have a priority property that
+        determines which entry point to use.
+        If you have multiple entry points in the scene and in the resources folder, the entry point with the highest
+        priority will be used.
+        This way you can start up some scenes with different initialization logic. This is useful in development and
+        testing ideas.
+    </p>
+    <img src="images/priority.png" alt="Entry Point Priority">
+
+    <h2 id="examples">Examples</h2>
+
+    <h3>EntryPointMonoBehaviour</h3>
+    <pre><code>
+using Abyss.StartupManager;
+
+public class MyEntryPoint : EntryPointMonoBehaviour
+{
+    #region Overrides
+    public override void ResolveObjectGraph()
+    {
+        var service = new InitializableService1();
+        AddInitializable(service);
+    }
+    #endregion
+}
+        </code></pre>
+
+    <h3>EntryPointScriptableObject</h3>
+    <pre><code>
+using Abyss.StartupManager;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "MyEntryPoint", menuName = "Startup Manager/MyEntryPoint", order = 1)]
+public class MyEntryPoint : EntryPointScriptableObject
+{
+    #region Overrides
+    public override void ResolveObjectGraph()
+    {
+        var service = new InitializableService1();
+        AddInitializable(service);
+    }
+    #endregion
+}
+        </code></pre>
+
+
+    <h3>Initializables</h3>
+    <pre><code>
+    public class InitializableService : IInitializable
+	{
+		#region Interface Implementations
+		public void Initialize()
+		{
+			Debug.Log("Initializing...");
+		}
+		#endregion
+	}
+        </code></pre>
+
+    <h3>Coroutine Initializables</h3>
+    <pre><code>
+public class InitializableWithReportExampleService : ICoroutineInitializable
+{
+    #region Interface Implementations
+    public IEnumerator Initialize(IProgressReceiver progressReceiver)
+    {
+        for (var i = 0; i < 10; i++)
+        {
+            var message = $"Initializing: {GetType().Name} step: {i}";
+            progressReceiver.Report(0.1f * i, message);
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    #endregion
+}
+        </code></pre>
+
+    <h3>UniTask Initializables</h3>
+    <pre><code>
+	public class InitializableWithReportExampleService : IUniTaskInitializable
+	{
+		#region Interface Implementations
+		public async UniTask Initialize(IProgressReceiver progressReceiver)
+		{
+			for (var i = 0; i < 10; i++)
+			{
+				var message = $"Initializing: {GetType().Name} step: {i}";
+				progressReceiver.Report(0.1f * i, message);
+				await UniTask.Delay(100);
+			}
+		}
+		#endregion
+	}
+        </code></pre>
+</div>
+</body>
+</html>

@@ -17,13 +17,7 @@ public class TestEntryOk : EntryPointMonoBehaviour
 		{
 			new InitializableService1(),
 			new InitializableService2(),
-			new InitializableService3(),
 			new AsyncInitializableService1(),
-			new AsyncInitializableService2(),
-			new AsyncInitializableService3(),
-			new InitializableWithReportExample1(),
-			new InitializableWithReportExample2(),
-			new InitializableWithReportExample3()
 		};
 
 		initializables.ForEach(i => AddInitializable(i));
