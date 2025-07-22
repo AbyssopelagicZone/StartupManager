@@ -5,6 +5,13 @@ Srartup Manager provides a simple and structured way to manage the application i
 It introduces interfaces such as `IInitializable` and `ICoroutineInitializable` 
 to ensure consistent and ordered initialization of your systems in Unity projects.
 
+## Installation
+
+You can add the following URL to the **Package Manager**:
+```
+https://github.com/AbyssopelagicZone/StartupManager.git?path=Assets/AppStartup
+```
+
 ## Features
 - **Asynchronous initialization**: Initialize systems asynchronously using coroutines or UniTasks.
 - **Initialization order**: Define the order of initialization for systems.
